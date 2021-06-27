@@ -5,8 +5,7 @@ const API_URL = "http://localhost:8080/api";
 class StorageService {
     storeProfilePic = (img) => {
         return axios.post(
-            API_URL + '/storage/profilePics', authHeader(),
-            img)
+            API_URL + '/storage/profilePics', img, { headers: authHeader() })
     }
 
 }
