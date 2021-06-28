@@ -29,6 +29,9 @@ export default class Profile extends Component {
     if (!currentUser) this.setState({ redirect: "/home" });
     this.setState({ currentUser: currentUser, userReady: true })
   }
+  componentWillUnmount() {
+    ns.removeObserver(this, NOTIF_FILE_CHANGE)
+  }
   onFileChange = file => {
     this.setState({file: file})
   }
