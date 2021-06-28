@@ -1,20 +1,19 @@
-import NotificationService, {NOTIF_PROFILE_PIC} from "./notification.service"
+import NotificationService, { NOTIF_FILE_CHANGE } from "./notification.service"
 
 let ns = new NotificationService();
 
 let instance = null;
 var imgPic = null;
 class DataService {
-    constructor(){
-        if(!instance) {
-            instance = this;
+    constructor() {
+            if (!instance) {
+                instance = this;
+            }
+            return instance;
         }
-        return instance;
-    }
-    // send a notification to all the observers for the NOTIF_PRFILE_PIC
-    changeProfilePic = img => {
-        imgPic = img;
-        ns.postNotification(NOTIF_PROFILE_PIC, imgPic);
+        // send a notification to all the observers for the NOTIF_PRFILE_PIC
+    changeFile = file => {
+        ns.postNotification(NOTIF_FILE_CHANGE, file);
     }
 }
 export default DataService;

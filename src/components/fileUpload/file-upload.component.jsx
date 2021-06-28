@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import StorageService from '../../services/storage.service';
+import DataService from '../../services/data.service';
 import "./file-upload.css"
 
+const ds = new DataService()
 
 class FileUpload extends Component {
 constructor(props) {
@@ -10,20 +12,12 @@ constructor(props) {
     //bind funtions
     this.triggerInputFile = this.triggerInputFile.bind(this)
     this.onImgChange = this.onImgChange.bind(this)
-    this.onSubmit = this.onSubmit.bind(this)
 }
 triggerInputFile = () => {
     document.getElementById("pfpUploader").click();
 }
 onImgChange = event => {
-    this.setState({
-        img: event.target.files[0],
-      });
-}
-onSubmit = () => {
-    const formData = new FormData();
-    formData.append("img", this.state.img)
-    StorageService.storeProfilePic(formData)
+    ds.changeFile(event.target.files[0])
 }
 render() {
     return (
@@ -35,11 +29,10 @@ render() {
                 type="file"
             />
             <button onClick={this.triggerInputFile}> Select File </button>
-            <button onClick={this.onSubmit}>Submit</button>
+            
         </div>
     );
 }
-
 }
 
 
