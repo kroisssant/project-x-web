@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import AuthService from "../.././services/auth.service";
 import { Link } from "react-router-dom";
+import UserService from "../../services/user.service"
 import './nav-bar.css'
 
 
@@ -29,6 +30,12 @@ class NavBar extends Component {
             showAdminBoard: user.roles.includes("ROLE_ADMIN"),
           });
         }
+
+        UserService.getUserBoard().catch(error => {
+            if(error.response.status === 401){
+              AuthService.logout()
+            }
+        })
       }
     
       logOut() {

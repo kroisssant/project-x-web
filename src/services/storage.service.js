@@ -7,6 +7,11 @@ class StorageService {
         return axios.post(
             API_URL + '/storage/profilePics', img, { headers: authHeader() })
     }
+    getProfilePic = id => {
+        axios.get(
+            API_URL + '/storage/profilePics/:' + id, { headers: authHeader() })
+        return
+    }
 
 }
 

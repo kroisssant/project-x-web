@@ -103,12 +103,19 @@ export default class Register extends Component {
         this.state.email,
         this.state.password,
       ).then(
+        
         response => {
           //if register successful
           this.setState({
             message: response.data.message,
             successful: true
           });
+          console.log(this.state.username, this.state.password)
+          AuthService.login(this.state.username, this.state.password).then(() => {
+            //if log on successfuly
+            this.props.history.push("/profile");
+            window.location.reload();
+          })
         },
         error => {
           //if error
@@ -123,9 +130,11 @@ export default class Register extends Component {
             successful: false,
             message: resMessage
           });
-        }
+        },
       );
+      
     }
+    
   }
   //render the ui
   render() {
@@ -214,5 +223,4 @@ export default class Register extends Component {
   }
 }
 
-// TODO: when signin automaticly log in is
 // TODO: Give the user img on the register screen

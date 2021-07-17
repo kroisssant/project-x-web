@@ -14,7 +14,7 @@ export default class Profile extends Component {
     this.state = {
       redirect: null,
       userReady: false,
-      currentUser: { username: "" },
+      currentUser: { username: "", id: "" },
       file: null
     };
 
@@ -53,12 +53,12 @@ export default class Profile extends Component {
         {(this.state.userReady) ?
         <div>
         <header className="jumbotron">
-        <img className="profile-img-card" src = {currentUser.profilePicUrl} alt=""/>
-          <h3>
+        <img className="profile-img-card" src = {"http://localhost:8080/api/storage/profilePics/" + currentUser.id} alt=""/>
+          <h3 className = "username">
             <strong>{currentUser.username}</strong> Profile
           </h3>
         </header>
-        <FileUpload />
+        <FileUpload accept = {"image/jpg"}/>
         <button onClick={this.onSubmit}>Submit</button>
       </div>: null}
       </div>

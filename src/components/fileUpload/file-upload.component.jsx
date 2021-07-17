@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import StorageService from '../../services/storage.service';
 import DataService from '../../services/data.service';
 import "./file-upload.css"
 
@@ -11,12 +10,13 @@ constructor(props) {
     this.state = {img: null}
     //bind funtions
     this.triggerInputFile = this.triggerInputFile.bind(this)
-    this.onImgChange = this.onImgChange.bind(this)
+    this.onFileChange = this.onFileChange.bind(this)
 }
 triggerInputFile = () => {
     document.getElementById("pfpUploader").click();
+    console.log(this.props.accept)
 }
-onImgChange = event => {
+onFileChange = event => {
     ds.changeFile(event.target.files[0])
 }
 render() {
@@ -25,8 +25,9 @@ render() {
             <input 
                 id = "pfpUploader"
                 ref={fileInput => this.fileInput = fileInput} 
-                onChange = {this.onImgChange}
+                onChange = {this.onFileChange}
                 type="file"
+                accept={this.props.accept}
             />
             <button onClick={this.triggerInputFile}> Select File </button>
             

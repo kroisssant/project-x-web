@@ -3,7 +3,6 @@ import NotificationService, { NOTIF_FILE_CHANGE } from "./notification.service"
 let ns = new NotificationService();
 
 let instance = null;
-var imgPic = null;
 class DataService {
     constructor() {
             if (!instance) {
