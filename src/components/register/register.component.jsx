@@ -55,6 +55,7 @@ export default class Register extends Component {
       username: "",
       email: "",
       password: "",
+      phone:"",
       successful: false,
       message: ""
     };
@@ -63,6 +64,7 @@ export default class Register extends Component {
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
+    this.onChangePhone = this.onChangePhone.bind(this)
 
     
   }
@@ -86,6 +88,11 @@ export default class Register extends Component {
     });
   }
 
+  onChangePhone(e) {
+    this.setState({
+      phone: e.target.value
+    })
+  }
   handleRegister(e) {
     e.preventDefault();
     
@@ -102,6 +109,7 @@ export default class Register extends Component {
         this.state.username,
         this.state.email,
         this.state.password,
+        this.state.phone
       ).then(
         
         response => {
@@ -190,6 +198,19 @@ export default class Register extends Component {
                     validations={[required, vpassword]}
                   />
                 </div>
+
+                <div className="form-group">
+              <label htmlFor="phone">Phone</label>
+              <Input
+                type="text"
+                className="form-control"
+                name="phone"
+                value={this.state.phone}
+                onChange={this.onChangePhone}
+                validations={[required]} //note for when i come back, make a check sistem for the phone
+              />
+            </div>
+
                 <div className="form-group">
                   <button className="btn btn-primary btn-block">Sign Up</button>
                 </div>
