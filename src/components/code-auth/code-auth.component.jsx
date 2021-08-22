@@ -49,18 +49,15 @@ export default class CodeAuth extends Component {
     if (this.checkBtn.context._errors.length === 0) {
       console.log("1")
       AuthService.codeCheck(this.state.code).then(
-        console.log("yes1"),
-        response => {
-          console.log("Ceva 1")
+        () => {
           //if log on successfuly
-          AuthService.storeCode(response.data.code)
+          AuthService.storeCode(this.state.code)
           this.props.history.push("/register");
-          window.location.reload();
+          window.location.reload(); 
           
         },
         error => {
           //error handeling
-          console.log("Ceva")
           const resMessage =
             (error.response &&
               error.response.data &&

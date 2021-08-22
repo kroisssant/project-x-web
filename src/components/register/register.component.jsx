@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
+import { Redirect } from "react-router-dom";
 import { isEmail } from "validator";
 import './register.css';
 import AuthService from "../.././services/auth.service";
@@ -52,6 +53,8 @@ export default class Register extends Component {
     super(props);
     //state
     this.state = {
+      redirect : null,
+      code : null,
       username: "",
       email: "",
       password: "",
@@ -69,6 +72,11 @@ export default class Register extends Component {
     
   }
 
+  componentDidMount() {
+    const currentCode = AuthService.getCode();
+    if (!currentCode) this.setState({ redirect: "/code" });
+    this.setState({ code: currentCode, userReady: true })
+  }
   //execute when the value in the username is changed
   onChangeUsername(e) {
     this.setState({
@@ -146,6 +154,9 @@ export default class Register extends Component {
   }
   //render the ui
   render() {
+    if(this.state.redirect) {
+      return <Redirect to = {this.state.redirect}/>
+    }
     return (
       <div className="col-md-12">
         <div className="card card-container">

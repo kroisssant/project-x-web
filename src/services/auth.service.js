@@ -29,10 +29,9 @@ class AuthService {
       username,
       email,
       password, 
-      phone
+      phone,
+      code: this.getCode()
     })
-    
-    
   }
 
   codeCheck(code) {
@@ -42,6 +41,12 @@ class AuthService {
   storeCode(code) {
     localStorage.setItem("code", JSON.stringify(code))
   }
+
+  getCode = () => {
+    console.log(localStorage.getItem("code"))
+    return JSON.parse(localStorage.getItem("code"))
+  }
+
   //get the user from the localStorage
   getCurrentUser() {
     return JSON.parse(localStorage.getItem('user'));
