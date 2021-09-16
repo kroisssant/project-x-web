@@ -17,7 +17,7 @@ const required = value => {
 
 export default class CodeAuth extends Component {
   constructor(props) {
-    super(props);
+    super(props)
    //set State
     this.state = {
       code: "",
@@ -25,7 +25,7 @@ export default class CodeAuth extends Component {
       message: ""
     };
     //bind funtions
-    this.handleLogin = this.handleLogin.bind(this);
+    this.handleCode = this.handleCode.bind(this);
     this.onChangeCode = this.onChangeCode.bind(this);
 
   }
@@ -36,7 +36,7 @@ export default class CodeAuth extends Component {
     });
   }
 
-  handleLogin(e) {
+  handleCode(e) {
     e.preventDefault();
 
     this.setState({
@@ -47,7 +47,6 @@ export default class CodeAuth extends Component {
     this.form.validateAll();
     //if no error from the button try to login
     if (this.checkBtn.context._errors.length === 0) {
-      console.log("1")
       AuthService.codeCheck(this.state.code).then(
         () => {
           //if log on successfuly
@@ -73,7 +72,6 @@ export default class CodeAuth extends Component {
         }
       );
     } else {
-      console.log("Ceva 2")
       this.setState({
         loading: false
       });
@@ -86,7 +84,7 @@ export default class CodeAuth extends Component {
         <div className="card card-container">
 
           <Form
-            onSubmit={this.handleLogin}
+            onSubmit={this.handleCode}
             ref={c => {
               this.form = c;
             }}

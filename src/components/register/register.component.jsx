@@ -74,7 +74,11 @@ export default class Register extends Component {
 
   componentDidMount() {
     const currentCode = AuthService.getCode();
-    if (!currentCode) this.setState({ redirect: "/code" });
+    // if (!currentCode) this.setState({ redirect: "/code" });
+    if(!currentCode){
+      this.props.history.push("/code");
+      window.location.reload();
+    }
     this.setState({ code: currentCode, userReady: true })
   }
   //execute when the value in the username is changed
@@ -154,16 +158,13 @@ export default class Register extends Component {
   }
   //render the ui
   render() {
-    if(this.state.redirect) {
-      return <Redirect to = {this.state.redirect}/>
-    }
     return (
       <div className="col-md-12">
         <div className="card card-container">
           <img
             src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
             alt="profile-img"
-            className="profile-img-card"
+            className="card-img-top"
           />
 
           <Form
