@@ -11,7 +11,9 @@ import Profile from "./components/profile/profile.component.jsx";
 import BoardUser from "./components/board/board-user.component.jsx";
 import BoardModerator from "./components/board/board-moderator.component.jsx";
 import BoardAdmin from "./components/board/board-admin.component.jsx";
-import CodeAuth from "./components/code-auth/code-auth.component.jsx"
+import CodeAuth from "./components/code-auth/code-auth.component.jsx";
+import BoardPrincipal from "./components/board/board-pricipal.component";
+import BoardStudent from "./components/board/board-student.component";
 
 class App extends Component {
   
@@ -30,6 +32,8 @@ class App extends Component {
             <Route path="/mod" component={BoardModerator} />
             <Route path="/admin" component={BoardAdmin} />
             <Route path = "/code" component={CodeAuth} />
+            <Route path = "/principal" component={BoardPrincipal}/>
+            <Route path = "/student" component = {BoardStudent}/>
           </Switch>
         </div>
       </div>

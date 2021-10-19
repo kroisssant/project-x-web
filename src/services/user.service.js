@@ -9,6 +9,10 @@ class UserService {
     return axios.get(API_URL + 'all');
   }
 
+  getPrincipalBoard() {
+    return axios.get(API_URL + 'principal', {headers: authHeader()})
+  }
+
   getUserBoard() {
     return axios.get(API_URL + 'user', { headers: authHeader() });
   }
@@ -19,6 +23,10 @@ class UserService {
 
   getAdminBoard() {
     return axios.get(API_URL + 'admin', { headers: authHeader() });
+  }
+
+  getStudentBoard() {
+    return axios.get(API_URL + "student", { headers: authHeader() })
   }
 }
 

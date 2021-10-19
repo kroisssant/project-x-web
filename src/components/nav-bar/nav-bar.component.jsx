@@ -26,6 +26,8 @@ class NavBar extends Component {
         if (user) {
           this.setState({
             currentUser: user,
+            showPrincipalBoard: user.roles.includes("ROLE_PRINCIPAL"),
+            showStudentBoard: user.roles.includes("ROLES_STUDENT"),
             showModeratorBoard: user.roles.includes("ROLE_MODERATOR"),
             showAdminBoard: user.roles.includes("ROLE_ADMIN"),
           });
@@ -43,7 +45,7 @@ class NavBar extends Component {
       }
       //render ui
     render() {
-        const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
+        const { currentUser, showModeratorBoard, showAdminBoard, showPrincipalBoard, showStudentBoard } = this.state;
         return (
             <nav className="navbar navbar-expand navbar-dark">
             <Link to={"/"} className="navbar-brand">
@@ -55,7 +57,13 @@ class NavBar extends Component {
                   Home
                 </Link>
               </li>
-  
+              {showStudentBoard && (
+                <li className="nav-item">
+                <Link to={"/student"} className="nav-link">
+                  Student Board
+                </Link>
+              </li>
+              )}
               {showModeratorBoard && (
                 <li className="nav-item">
                   <Link to={"/mod"} className="nav-link">
@@ -68,6 +76,14 @@ class NavBar extends Component {
                 <li className="nav-item">
                   <Link to={"/admin"} className="nav-link">
                     Admin Board
+                  </Link>
+                </li>
+              )}
+
+              {showPrincipalBoard && (
+                <li className="nav-item">
+                  <Link to={"/principal"} className="nav-link">
+                    Principal Board
                   </Link>
                 </li>
               )}
